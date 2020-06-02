@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top|left"
+    android:background="#FFC107"
+    android:fadingEdge="horizontal|vertical|none"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/react_random"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#FFC107"
+        android:fadingEdge="horizontal|vertical|none"
+        android:fontFamily="sans-serif-black"
+        android:text="React Random"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#7A0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/animation_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFCE3C"
+            android:scaleType="centerCrop"
+            android:src="@drawable/unnamed" />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/heart_emoji"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/heartt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/angry_emoji" />
+
+
+    <ImageButton
+        android:id="@+id/loveeye_emoji"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/lobeye"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/heart_emoji" />
+
+    <ImageButton
+        android:id="@+id/angry_emoji"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/angry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
