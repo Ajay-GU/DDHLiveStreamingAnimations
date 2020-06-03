@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
+
 import com.github.pgreze.reactions.PopupGravity;
 import com.github.pgreze.reactions.ReactionPopup;
 import com.github.pgreze.reactions.ReactionsConfig;
@@ -14,6 +17,11 @@ public class MainActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.activity_main);
+    View reactionButton = findViewById(R.id.react_button);
+    ScaleAnimation
+        scale = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
+    scale.setDuration(300);
+    scale.setInterpolator(new OvershootInterpolator());
 
     ReactionsConfig config = new ReactionsConfigBuilder(this)
         .withReactions(new int[]{
@@ -25,6 +33,7 @@ public class MainActivity extends Activity {
         .build();
 
     ReactionPopup popup = new ReactionPopup(this, config, (position) -> {
+      reactionButton.startAnimation(scale);
       switch (position){
         case 0: react_angry(); break;
         case 1: react_loveeye(); break;
@@ -33,7 +42,7 @@ public class MainActivity extends Activity {
       return true;
     });
 
-    View reactionButton = findViewById(R.id.react_button);
+
     reactionButton.setOnTouchListener(popup);
   }
 
