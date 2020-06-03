@@ -88,12 +88,7 @@ public class DirectionGenerator {
 
     int width = activity.getResources().getDisplayMetrics().widthPixels;
     int height = activity.getResources().getDisplayMetrics().heightPixels;
-    int y = height ;
-    Random random = new Random();
-    int high=width-50;
-    int low=width-300;
-    int x =(random.nextInt(high-(low))+low);
-    return new int[]{x, y};
+    return new int[]{width-200, height};
   }
 
   /**

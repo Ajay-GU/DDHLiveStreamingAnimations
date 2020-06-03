@@ -211,11 +211,8 @@ public class OverTheTopLayer {
 
 
     } else {
-
       Log.e(OverTheTopLayer.class.getSimpleName(), "Could not destroy the layer as the layer was never created.");
-
     }
-
   }
 
   /**

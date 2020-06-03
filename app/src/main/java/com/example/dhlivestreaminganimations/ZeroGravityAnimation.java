@@ -14,15 +14,11 @@ public class ZeroGravityAnimation {
 
   private static final int RANDOM_DURATION = -1;
 
-
-
   private Direction mOriginationDirection = Direction.RANDOM;
   private Direction mDestinationDirection = Direction.RANDOM;
   private int mDuration = RANDOM_DURATION;
-  private int mCount = 1;
   private int mImageResId;
   private float mScalingFactor = 1f;
-  private Animation.AnimationListener mAnimationListener;
 
 
   /**
@@ -44,23 +40,17 @@ public class ZeroGravityAnimation {
     return this;
   }
 
-  /**
-   * Will take a random time duriation for the animation
-   * @return
-   */
+
   public ZeroGravityAnimation setRandomDuration() {
     return setDuration(RANDOM_DURATION);
   }
 
-  /**
-   * Sets the time duration in millseconds for animation to proceed.
-   * @param duration
-   * @return
-   */
+
   public ZeroGravityAnimation setDuration(int duration) {
     this.mDuration = duration;
     return this;
   }
+
 
   /**
    * Sets the image reference id for drawing the image
@@ -82,16 +72,6 @@ public class ZeroGravityAnimation {
     return this;
   }
 
-  public ZeroGravityAnimation setAnimationListener(Animation.AnimationListener listener) {
-    this.mAnimationListener = listener;
-    return this;
-  }
-
-  public ZeroGravityAnimation setCount(int count) {
-    this.mCount = count;
-    return this;
-  }
-
 
   /**
    * Starts the Zero gravity animation by creating an OTT and attach it to th given ViewGroup
@@ -101,13 +81,6 @@ public class ZeroGravityAnimation {
   public void play(Activity activity, ViewGroup ottParent) {
 
     DirectionGenerator generator = new DirectionGenerator();
-
-    if(mCount > 0) {
-
-      for (int i = 0; i < mCount; i++) {
-
-
-        final int iDupe = i;
 
         Direction origin = mOriginationDirection == Direction.RANDOM ? generator.getRandomDirection() : mOriginationDirection;
         Direction destination = mDestinationDirection == Direction.RANDOM ? generator.getRandomDirection(origin) : mDestinationDirection;
@@ -164,66 +137,19 @@ public class ZeroGravityAnimation {
             .create();
 
 
-        switch (origin) {
-          case LEFT:
-
-        }
-
         int deltaX = endPoints[0]  - startingPoints[0];
         int deltaY = endPoints[1] - startingPoints[1];
 
         int duration = mDuration;
         if (duration == RANDOM_DURATION) {
-          duration = RandomUtil.generateRandomBetween(3500, 12500);
+          duration = RandomUtil.generateRandomBetween(3500, 7000);
         }
 
         TranslateAnimation animation = new TranslateAnimation(0, deltaX, 0, deltaY);
         animation.setDuration(duration);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-          @Override
-          public void onAnimationStart(Animation animation) {
-
-            if (iDupe == 0) {
-              if (mAnimationListener != null) {
-                mAnimationListener.onAnimationStart(animation);
-              }
-            }
-          }
-
-          @Override
-          public void onAnimationEnd(Animation animation) {
-
-            layer.destroy();
-
-            if (iDupe == (mCount - 1)) {
-              if (mAnimationListener != null) {
-                mAnimationListener.onAnimationEnd(animation);
-              }
-            }
-
-          }
-
-          @Override
-          public void onAnimationRepeat(Animation animation) {
-
-          }
-        });
         layer.applyAnimation(animation);
       }
     }
-    else  {
 
-      Log.e(ZeroGravityAnimation.class.getSimpleName(),"Count was not provided, animation was not started");
-    }
-  }
 
-  /**
-   * Takes the content view as view parent for laying the animation objects and starts the animation.
-   * @param activity - activity on which the zero gravity animation should take place.
-   */
-  public void play(Activity activity) {
 
-    play(activity,null);
-
-  }
-}
